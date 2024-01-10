@@ -5,11 +5,11 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--mvc 설정을 어노테이션 기반으로 처리한다 -->
+    <!--MVC 설정을 어노테이션 기반으로 처리한다-->
     <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
 
     <!--이미지나 정적인 html 파일의 경로를 지정-->
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
@@ -20,6 +20,7 @@
         <property name="formatters">
             <set>
                 <bean class="com.example.springex1.controller.formatter.LocalDateFormatter"/>
+                <bean class="com.example.springex1.controller.formatter.CheckboxFormatter"/>
             </set>
         </property>
     </bean>

@@ -106,6 +106,37 @@
 
     </div>
 </div>
+<script>
+    const formObj = document.querySelector("form");
+
+    const serverVaildResult = {}
+    <c:forEach items="${errors}" var="error">
+    serverVaildResult['${error.getField()}'] = '${error.defaultMessage}'
+    </c:forEach>
+    console.log(serverVaildResult);
+
+    document.querySelector("#remove").addEventListener("click",function (e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        formObj.action = "/todo/remove";
+        formObj.method = "post";
+
+        formObj.submit();
+
+    },false);
+    document.querySelector("#modify").addEventListener("click",function (e){
+        e.preventDefault();
+        e.stopPropagation();
+
+        formObj.action = "/todo/modify";
+        formObj.method = "post";
+        formObj.submit();
+    },false);
+    document.querySelector("#list").addEventListener("click", function(){
+        self.location = '/todo/list';
+    },false);
+</script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
