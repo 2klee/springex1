@@ -15,15 +15,17 @@
 </head>
 <body>
 
-  <section class="intro">
-    <div class="bg-image h-100" style="background-color: #f5f7fa;">
-      <div class="mask d-flex align-items-center h-100">
+<%--  <section class="intro">--%>
+<%--    <div class="bg-image h-100" style="background-color: #f5f7fa;">--%>
+<%--      <div class="mask d-flex align-items-center h-100">--%>
         <div class="container pt-5">
           <div class="row justify-content-center">
             <div class="col-12">
               <div class="card">
                 <div class="card-body p-0">
-                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 700px">
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" <%--style="position: relative; height: 700px"--%>>
+                    <h5>title</h5>
+                    <button type="button" class="btn btn-primary" id="register">register</button>
                     <table class="table table-striped mb-0">
                       <thead style="background-color: #002d72; color: white;">
                       <tr>
@@ -53,8 +55,15 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+<%--      </div>--%>
+<%--    </div>--%>
+<%--  </section>--%>
+
+
+<script>
+  document.querySelector('#register').addEventListener('click',function (){
+      location.href = "/todo/register";
+  })
+</script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="../../../public/css/list.css">
+<%--  <link rel="stylesheet" type="text/css" href="../../../public/css/list.css">--%>
 
   <title>Hello, world!</title>
 </head>
@@ -57,27 +57,7 @@
 
 
 <script>
-  // document.getElementById("modify").addEventListener('click', function(){
-  //     window.location.href = "modify.jsp";
-  // });
-  //
-  // document.getElementById("list").addEventListener('click', function(){
-  //     window.location.href = "list.jsp";
-  // });
 
-
-  // const formObj = document.querySelector("form");
-  //
-  // document.querySelector("#remove").addEventListener("click",function (e){
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //
-  //     formObj.action = "/todo/remove";
-  //     formObj.method = "post";
-  //
-  //     formObj.submit();
-  //
-  // },false);
   document.querySelector("#modify").addEventListener("click",function (){
       self.location = '/todo/modify?tno=${dto.tno}'
   },false);

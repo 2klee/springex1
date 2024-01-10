@@ -56,22 +56,8 @@
 </div>
 
 
-<%--  <script>--%>
-<%--      const serverVaildResult = {}--%>
-<%--      <c:forEach items="${errors}" var="error">--%>
-<%--      serverVaildResult['${error.getField()}'] = '${error.defaultMessage}'--%>
-<%--      </c:forEach>--%>
-<%--      console.log(serverVaildResult);--%>
-<%--  </script>--%>
-<script>
-  // document.getElementById("modify").addEventListener('click', function(){
-  //     window.location.href = "modify.jsp";
-  // });
-  //
-  // document.getElementById("list").addEventListener('click', function(){
-  //     window.location.href = "list.jsp";
-  // });
 
+<script>
   const formObj = document.querySelector("form");
 
   const serverVaildResult = {}

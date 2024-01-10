@@ -115,6 +115,10 @@
     </c:forEach>
     console.log(serverVaildResult);
 
+    document.querySelector('#register').addEventListener('click',function (){
+        location.href = "/todo/register";
+    });
+
     document.querySelector("#remove").addEventListener("click",function (e){
         e.preventDefault();
         e.stopPropagation();

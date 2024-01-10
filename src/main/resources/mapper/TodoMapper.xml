@@ -30,4 +30,8 @@
         where tno = #{tno}
     </update>
 
+    <select id="selectList" resultType="com.example.springex1.domain.TodoVO">
+        select * from tb1_todo order by tno desc limit #{skip}, #{size}
+    </select>
+
 </mapper>

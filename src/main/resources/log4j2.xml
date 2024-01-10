@@ -14,13 +14,13 @@
             <appender-ref ref="console" />
         </logger>
 
-                <logger name="org.example.springex1" level="INFO" additivity="false">
-                    <appender-ref ref="console" />
-                </logger>
+        <logger name="org.example.springex1" level="INFO" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
 
-                <logger name="org.example.springex1.mapper" level="TRACE" additivity="false">
-                    <appender-ref ref="console" />
-                </logger>
+        <logger name="org.example.springex1.mapper" level="TRACE" additivity="false">
+            <appender-ref ref="console" />
+        </logger>
 
         <root level="INFO" additivity="false">
             <AppenderRef ref="console"/>

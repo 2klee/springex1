@@ -15,8 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/todo")
 @Log4j2
+@RequestMapping("/todo")
 @RequiredArgsConstructor
 public class TodoController {
   private final TodoService todoService;
@@ -46,7 +46,7 @@ public class TodoController {
       return "redirect:/todo/register";
     }
 
-//    log.info(todoDTO);
+    log.info(todoDTO);
     todoService.register(todoDTO);
 
     return "redirect:/todo/list";
@@ -71,14 +71,15 @@ public class TodoController {
   public String modify(@Valid TodoDTO todoDTO,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes){
-    log.info("todo modify");
+    log.info("todo modify" + todoDTO);
     if(bindingResult.hasErrors()){
       log.info("has errors...");
-      redirectAttributes.addAttribute("errors",bindingResult.getAllErrors());
+      redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
+      redirectAttributes.addAttribute("tno", todoDTO.getTno());
       return "redirect:/todo/modify";
     }
 
-    //    log.info(todoDTO);
+//    log.info(todoDTO);
     todoService.modify(todoDTO);
 
     return "redirect:/todo/list";
