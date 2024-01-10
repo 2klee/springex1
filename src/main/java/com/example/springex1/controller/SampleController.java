@@ -19,4 +19,9 @@ public class SampleController {
   public void ex2(LocalDate localDate){
     log.info("ex2" + "localDate :: " + localDate);
   }
+
+  @GetMapping("/ex3")
+  public void ex3(String p1, int p2){
+    log.info("p1" + p1 + " :: " + "p2" + p2);
+  }
 }
