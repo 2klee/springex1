@@ -1,5 +1,6 @@
 package com.example.springex1.controller;
 
+import com.example.springex1.dto.PageRequestDTO;
 import com.example.springex1.dto.TodoDTO;
 import com.example.springex1.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -23,9 +24,17 @@ public class TodoController {
 
   // list
   @RequestMapping("/list")
-  public void list(Model model){
-    log.info("todo list");
-    model.addAttribute("dtoList", todoService.getAll());
+  public void list(@Valid PageRequestDTO pageRequestDTO,
+                   BindingResult bindingResult,
+                   Model model){
+    log.info("=== pageRequestDTO :: " + pageRequestDTO);
+
+    if(bindingResult.hasErrors()) {
+      pageRequestDTO = PageRequestDTO.builder().build();
+    }
+
+    log.info("=== pageRequestDTO.getLink :: " + pageRequestDTO.getLink());
+    model.addAttribute("responseDTO", todoService.getList(pageRequestDTO));
   }
 
   //register get
@@ -53,22 +62,28 @@ public class TodoController {
   }
 
   @GetMapping({"/read", "/modify"})
-  public void read(Long tno, Model model){
+  public void read(Long tno, PageRequestDTO pageRequestDTO, Model model){
     TodoDTO todoDTO = todoService.getOne(tno);
     log.info(todoDTO);
+    log.info("=== pageRequestDTO.getLink :: " + pageRequestDTO.getLink());
     model.addAttribute("dto", todoDTO);
   }
 
   @PostMapping("/remove")
-  public String remove(Long tno, RedirectAttributes redirectAttributes){
-    log.info("========================= remove :: " + tno + "==========================");
-    todoService.remove(tno);
+  public String remove(@Valid TodoDTO todoDTO, Long tno, PageRequestDTO pageRequestDTO,
+                       BindingResult bindingResult, RedirectAttributes redirectAttributes){
+    log.info("=== remove :: " + tno);
 
-    return "redirect:/todo/list";
+    todoService.remove(tno);
+//    redirectAttributes.addAttribute("page", 1);
+//    redirectAttributes.addAttribute("size", pageRequestDTO);
+
+    log.info("=== afterRemove pageRequestDTO.getLink :: " + pageRequestDTO.getLink());
+    return "redirect:/todo/list?" + pageRequestDTO.getLink();
   }
 
   @PostMapping("/modify")
-  public String modify(@Valid TodoDTO todoDTO,
+  public String modify(@Valid TodoDTO todoDTO, PageRequestDTO pageRequestDTO,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes){
     log.info("todo modify" + todoDTO);
@@ -82,6 +97,16 @@ public class TodoController {
 //    log.info(todoDTO);
     todoService.modify(todoDTO);
 
-    return "redirect:/todo/list";
+//    redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
+//    redirectAttributes.addAttribute("size", pageRequestDTO.getSize());
+
+    redirectAttributes.addAttribute("tno", todoDTO.getTno());
+
+    log.info("=== pageRequestDTO.getLink :: " + pageRequestDTO.getLink());
+
+    return "redirect:/todo/read";
+
   }
+
+
 }

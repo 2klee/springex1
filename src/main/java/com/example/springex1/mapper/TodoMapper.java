@@ -18,4 +18,6 @@ public interface TodoMapper {
 
   List<TodoVO> selectList(PageRequestDTO pageRequestDTO);
 
+  int getCount(PageRequestDTO pageRequestDTO);
+
 }

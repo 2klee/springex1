@@ -1,6 +1,9 @@
 package com.example.springex1.mapper;
 
 import com.example.springex1.domain.TodoVO;
+import com.example.springex1.dto.PageRequestDTO;
+import com.example.springex1.dto.PageResponseDTO;
+import com.example.springex1.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -47,4 +50,40 @@ class TodoMapperTest {
     TodoVO todoVO = todoMapper.selectOne(3L);
     log.info(todoVO);
   }
+
+  @Test
+  public void testSelectList() {
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+    List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
+    voList.forEach(vo -> log.info(vo));
+  }
+
+  @Test
+  public void testPaging(){
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+            .page(3).size(10).build();
+
+    List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
+    voList.forEach(vo-> log.info(vo));
+  }
+
+  @Test
+  public void testGetCount(){
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+    int count = todoMapper.getCount(pageRequestDTO);
+    log.info("count");
+  }
+  
+  
+//  @Test
+//  public void testPaging(){
+//    PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+//
+//    PageResponseDTO<TodoDTO> pageResponseDTO = todoService.getList(pageRequestDTO);
+//
+//    log.info("pageResponseDTO");
+//
+//    pageResponseDTO.getDtoList().stream().forEach(todoDTO -> log.info("todoDTO"));
+//  }
+
 }
